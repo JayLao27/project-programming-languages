@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# BillEase: Utility Billing System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**BillEase** is a web-based transaction processing system built with **React.js**. It simulates a real-world utility company workflow, allowing administrators to register customers, input meter readings, generate bills, and process payments with printable receipts.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+### 1. Dashboard (Account Masterlist)
+* **Real-time Overview:** View all customer accounts, balances, and service types at a glance.
+* **Search & Filter:** Instantly find customers by Name/ID or filter by Service Type (Electricity, Water, Internet).
+* **Pagination:** Handles large lists by breaking them into pages (5 items per page).
+* **Status Indicators:** Visual cues for balances (Green = Paid/Zero, Red = Due).
 
-### `npm start`
+### 2. Transaction Modules
+* **Customer Registration:** Creates new accounts with **auto-incrementing IDs** (e.g., 101, 102).
+* **Meter Reading:** * Input current meter reading.
+    * System automatically looks up the previous reading.
+    * **Auto-Calculation:** Computes `(Current - Previous) * Rate + Service Charge`.
+    * Validates that new reading > previous reading.
+* **Payment Processing:**
+    * Accepts partial or full payments.
+    * Updates customer balance immediately.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 3. Printing System
+* **Billing Statement:** Generate a professional invoice from the Dashboard.
+* **Official Receipt:** Automatically offers to print a receipt after a successful payment.
+* **CSS Print Media Queries:** Hides the web interface and formats a clean, paper-sized slip when printing.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 4. User Experience
+* **Custom Modals:** Replaces default browser alerts with professional popup windows for success/error messages.
+* **Safe Data Handling:** Prevents application crashes using optional chaining for data formatting.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Technologies Used
+* **Frontend Library:** React.js (Hooks: `useState`, `useEffect`)
+* **Styling:** CSS3 (Flexbox, Grid, Print Media Queries, Keyframe Animations)
+* **Environment:** Node.js
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⚙️ Installation & Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1.  **Prerequisites:** Ensure you have [Node.js](https://nodejs.org/) installed.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2.  **Create the Project:**
+    Open your terminal and run:
+    ```bash
+    npx create-react-app utility-billing
+    cd utility-billing
+    ```
 
-### `npm run eject`
+3.  **Install Dependencies:**
+    (This project uses standard React dependencies, so just run standard install)
+    ```bash
+    npm install
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4.  **Run the Application:**
+    ```bash
+    npm start
+    ```
+    The app will open automatically at `http://localhost:3000`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📖 Usage Guide
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### A. Registering a Customer
+1. Go to the **"1. Register"** tab.
+2. Enter a Name and select a Service Type.
+3. Click **Create Account**.
+4. A modal will appear showing the new **Account ID**.
 
-## Learn More
+### B. Generating a Bill
+1. Go to the **"2. Meter Reading"** tab.
+2. Select a customer from the dropdown. *Note: The system will display their Previous Reading.*
+3. Enter a **Current Reading** higher than the previous one.
+4. Click **Generate Bill**.
+5. You can choose to print the Bill immediately or view it later on the Dashboard.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### C. Paying a Bill
+1. Go to the **"3. Pay Bill"** tab.
+2. Select a customer (only those with a balance > 0 will appear).
+3. Enter the payment amount.
+4. Click **Process Payment**.
+5. A modal will confirm success and offer a **"Print Receipt"** button.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📂 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```text
+utility-billing/
+├── public/
+├── src/
+│   ├── App.css       # All styles (Dashboard, Modals, Print Layouts)
+│   ├── App.js        # Main Application Logic (State, Transactions)
+│   ├── index.js      # Entry point
+│   └── ...
+├── package.json
+└── README.md
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Created by yours truly: Mr. Jan Vincent R. Oclarit
+Date: December 6, 2025
