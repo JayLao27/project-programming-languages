@@ -22,7 +22,6 @@ body {
   overflow: hidden;
 }
 
-/* Header */
 .header {
   background-color: var(--primary);
   color: white;
@@ -35,7 +34,6 @@ body {
   color: var(--accent);
 }
 
-/* Tabs */
 .nav-tabs {
   display: flex;
   background: #dfe6e9;
@@ -63,12 +61,10 @@ body {
   background: #dcdde1;
 }
 
-/* Content Area */
 .content-area {
   padding: 30px;
 }
 
-/* Forms */
 .card-form {
   max-width: 500px;
   margin: 0 auto;
@@ -115,7 +111,6 @@ body {
 .btn-generate { background: var(--accent) !important; }
 .btn-pay { background: var(--success) !important; }
 
-/* Dashboard Controls (Search & Filter) */
 .dashboard-controls {
   display: flex;
   gap: 10px;
@@ -140,7 +135,6 @@ body {
   cursor: pointer;
 }
 
-/* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -162,7 +156,6 @@ tr:hover {
   background-color: #f9f9f9;
 }
 
-/* Pagination */
 .pagination {
   display: flex;
   justify-content: center;
@@ -200,7 +193,6 @@ tr:hover {
   color: #7f8c8d;
 }
 
-/* Action Buttons & Info Boxes */
 .btn-print-icon {
   background: #f1c40f;
   border: none;
@@ -225,7 +217,6 @@ tr:hover {
   font-size: 0.9rem;
 }
 
-/* --- MODAL STYLES --- */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -271,7 +262,6 @@ tr:hover {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp { from { transform: translateY(20px); } to { transform: translateY(0); } }
 
-/* --- PRINT STYLES --- */
 @media print {
   .screen-only, .header, .nav-tabs, .content-area, .modal-overlay { display: none !important; }
   #print-area { display: block !important; position: absolute; top: 0; left: 0; width: 100%; }

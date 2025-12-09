@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-// --- Configuration ---
+// Configuration
 const RATES = {
   Electricity: { unit: 'kWh', price: 0.15, serviceCharge: 10.00 },
   Water: { unit: 'cu.m', price: 1.25, serviceCharge: 5.00 },
@@ -10,7 +10,7 @@ const RATES = {
 
 const ITEMS_PER_PAGE = 5;
 
-// --- Sub-Component: Generic Modal ---
+// Sub-Component: Generic Modal
 const Modal = ({ isOpen, title, children, onClose, actions }) => {
   if (!isOpen) return null;
   return (
@@ -27,7 +27,7 @@ const Modal = ({ isOpen, title, children, onClose, actions }) => {
   );
 };
 
-//  Initial Mock Data 
+// Initial Mock Data
 const INITIAL_ACCOUNTS = [
   { id: 101, name: 'John Doe', type: 'Electricity', balance: 44.65, lastReading: 231, history: [] },
   { id: 102, name: 'Jane Smith', type: 'Water', balance: 45.50, lastReading: 120, history: [] },
@@ -37,12 +37,12 @@ function App() {
   const [accounts, setAccounts] = useState(INITIAL_ACCOUNTS);
   const [activeTab, setActiveTab] = useState('dashboard');
   
-  // Dashboard State 
+  // Dashboard State
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
 
-  //  Forms State
+  // Forms State
   const [regForm, setRegForm] = useState({ name: '', type: 'Electricity' });
   const [readingForm, setReadingForm] = useState({ accountId: '', currentReading: '' });
   const [payForm, setPayForm] = useState({ accountId: '', amount: '' });
@@ -51,16 +51,16 @@ function App() {
   const [printData, setPrintData] = useState(null);
   const [modalState, setModalState] = useState({ type: null, data: null });
 
-  //  Helper: Close Modal 
+  // Helper: Close Modal
   const closeModal = () => setModalState({ type: null, data: null });
 
-  //  Helper: Trigger Print 
+  // Helper: Trigger Print
   const triggerPrint = (data) => {
     setPrintData(data);
     setTimeout(() => { window.print(); }, 100);
   };
 
-  //  Handler: Registration (Auto-Increment ID) 
+  // Handler: Registration (Auto-Increment ID)
   const registerCustomer = (e) => {
     e.preventDefault();
     // Logic: Find highest ID and add 1
@@ -83,7 +83,7 @@ function App() {
     });
   };
 
-  //  Handler: Generate Bill 
+  // Handler: Generate Bill
   const generateBill = (e) => {
     e.preventDefault();
     const accId = parseInt(readingForm.accountId);
@@ -176,7 +176,7 @@ function App() {
     });
   };
 
-  // Handler: Print Statement 
+  // Handler: Print Statement
   const printStatement = (acc) => {
     triggerPrint({
       type: 'STATEMENT',
@@ -190,7 +190,7 @@ function App() {
     });
   };
 
-  // Dashboard Logic (Filter & Search) 
+  // Dashboard Logic (Filter & Search)
   let processedData = accounts.filter(acc => filterType === 'All' ? true : acc.type === filterType);
   processedData = processedData.filter(acc => acc.name.toLowerCase().includes(searchTerm.toLowerCase()) || acc.id.toString().includes(searchTerm));
   const totalPages = Math.ceil(processedData.length / ITEMS_PER_PAGE);
@@ -200,7 +200,7 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* --- HIDDEN PRINT AREA --- */}
+      {/* HIDDEN PRINT AREA */}
       <div id="print-area">
         {printData && (
           <div className="print-slip">
@@ -238,7 +238,7 @@ function App() {
         )}
       </div>
 
-      {/* --- MODALS --- */}
+      {/* MODALS */}
       <Modal isOpen={modalState.type === 'REGISTER_SUCCESS'} title="🎉 Registration Successful" onClose={closeModal}>
         <p>Customer account created.</p>
         <div style={{fontSize: '1.2rem', margin: '20px 0', color: '#27ae60'}}>
@@ -280,7 +280,7 @@ function App() {
         <p style={{color: '#c0392b'}}>{modalState.data?.msg}</p>
       </Modal>
 
-      {/* --- MAIN UI --- */}
+      {/* MAIN UI */}
       <div className="screen-only">
         <header className="header">
           <h1>BillEase <span>Utility System</span></h1>
